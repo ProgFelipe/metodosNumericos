@@ -23,7 +23,7 @@ import metodos.*;
  * @authors Felipe & Andres
  */
 public class Numericos {
-    private static JTextField jtxtfuncion;
+    private static JTextField jtxtfuncion, jtxtdelta, jtxtx0, jtxtniter, jtxttol;
     private static JButton btncalcular;
     private static JList list;
     public funcion funcion;
@@ -38,7 +38,11 @@ public class Numericos {
       // Crear un nuevo Frame
       final JFrame frame = new JFrame("Métodos Numéricos - Andres & Felipe 0.1");
       String [] data = {"Busqueda incremental","Punto fijo","Biseccion","Newton Raphson","Secante"};
-      jtxtfuncion = new JTextField("ingrese funcion",20);
+      jtxtfuncion = new JTextField();
+      jtxtdelta = new JTextField("ingrese delta",8);
+      jtxtx0 = new JTextField("ingrese xo",8);
+      jtxtniter = new JTextField("ingrese numero iteraciones",8);
+      jtxttol = new JTextField("ingrese tolerancia",8);
       btncalcular = new JButton("Evaluar");
       list = new JList(data); //data has type Object[]
       list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -52,24 +56,32 @@ public class Numericos {
       btncalcular.addActionListener(new ActionListener(){
           public void actionPerformed(ActionEvent e) {
               funcion f = new funcion(jtxtfuncion.getText());
-              if(f.validador()){
-                    switch(list.getSelectedIndex()){
-                        default:
-                            new bsqIncremental();
-                            break;
-                        case 1:
-                            new puntoFijo();
-                            break;
-                        case 2:
-                            new biseccion();
-                            break;                      
-                        case 3:
-                            new NewtonRaphson();
-                            break;                      
-                        case 4:
-                            new secante();
-                            break;
+              double tolerancia = Double.parseDouble(jtxttol.getText());
+              double x0 = Double.parseDouble(jtxtx0.getText());
+              double delta = Double.parseDouble(jtxtdelta.getText());
+              int niter = Integer.parseInt(jtxtniter.getText());
+              try{
+                    if(f.validador()){
+                          switch(list.getSelectedIndex()){
+                              default:
+                                  new bsqIncremental(x0, delta, niter);
+                                  break;
+                              case 1:
+                                  new puntoFijo();
+                                  break;
+                              case 2:
+                                  new biseccion();
+                                  break;                      
+                              case 3:
+                                  new NewtonRaphson();
+                                  break;                      
+                              case 4:
+                                  new secante();
+                                  break;
+                          }
                     }
+              }catch(Exception excepcion){
+                  System.out.println("Error "+excepcion);
               }
           }
       });
@@ -78,11 +90,15 @@ public class Numericos {
       Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();  
       // Agregar un JPanel que se llama Mesh (esta clase)
       frame.setLayout( new FlowLayout( ) );
-      frame.add(jtxtfuncion);
+      //frame.add(jtxtfuncion);
+      frame.add(jtxtx0);
+      frame.add(jtxtdelta);
+      frame.add(jtxtniter);
+      frame.add(jtxttol);
       frame.add(listScroller);
       frame.add(btncalcular);
       // Asignarle tamaÃ±o
-      frame.setSize(screenSize.width/2, 140);
+      frame.setSize(screenSize.width/2, 160);
       // Poner el frame en el centro de la pantalla
       frame.setLocationRelativeTo(null);
       // Mostrar el frame

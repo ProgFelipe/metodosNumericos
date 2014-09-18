@@ -14,6 +14,9 @@ public class funcion {
     public funcion(String f){
     
     }
+    public funcion(){
+    
+    }
     
     public boolean validador(){
         return false;
