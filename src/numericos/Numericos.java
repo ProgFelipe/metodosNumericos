@@ -23,7 +23,7 @@ import metodos.*;
  * @authors Felipe & Andres
  */
 public class Numericos {
-    private static JTextField jtxtfuncion, jtxtdelta, jtxtx0, jtxtniter, jtxttol;
+    private static JTextField jtxtfuncion, jtxtdelta, jtxtx0, jtxtx1, jtxtniter, jtxttol;
     private static JButton btncalcular;
     private static JList list;
     public funcion funcion;
@@ -41,6 +41,7 @@ public class Numericos {
       jtxtfuncion = new JTextField();
       jtxtdelta = new JTextField("ingrese delta",8);
       jtxtx0 = new JTextField("ingrese xo",8);
+      jtxtx1 = new JTextField("ingrese x1",8);
       jtxtniter = new JTextField("ingrese numero iteraciones",8);
       jtxttol = new JTextField("ingrese tolerancia",8);
       btncalcular = new JButton("Evaluar");
@@ -58,6 +59,7 @@ public class Numericos {
               funcion f = new funcion(jtxtfuncion.getText());
               double tolerancia = Double.parseDouble(jtxttol.getText());
               double x0 = Double.parseDouble(jtxtx0.getText());
+              double x1 = Double.parseDouble(jtxtx1.getText());
               double delta = Double.parseDouble(jtxtdelta.getText());
               int niter = Integer.parseInt(jtxtniter.getText());
               try{
@@ -76,7 +78,7 @@ public class Numericos {
                                   new NewtonRaphson(tolerancia, x0, niter);
                                   break;                      
                               case 4:
-                                  new secante();
+                                  new secante(tolerancia, x0,x1,niter);
                                   break;
                           }
                     }
@@ -92,6 +94,7 @@ public class Numericos {
       frame.setLayout( new FlowLayout( ) );
       //frame.add(jtxtfuncion);
       frame.add(jtxtx0);
+      frame.add(jtxtx1);
       frame.add(jtxtdelta);
       frame.add(jtxtniter);
       frame.add(jtxttol);
