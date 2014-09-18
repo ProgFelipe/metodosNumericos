@@ -26,4 +26,8 @@ public class funcion {
         //funcion evaluada en x
         return Math.sin(x);
     }
+    
+    public double derivada(double x){
+        return Math.cos(x);
+    }
 }

@@ -73,7 +73,7 @@ public class Numericos {
                                   new biseccion();
                                   break;                      
                               case 3:
-                                  new NewtonRaphson();
+                                  new NewtonRaphson(tolerancia, x0, niter);
                                   break;                      
                               case 4:
                                   new secante();
