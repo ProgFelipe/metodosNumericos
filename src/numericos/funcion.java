@@ -23,7 +23,7 @@ public class funcion {
     }
     
     public double calc(double x){
-        
-        return 0;
+        //funcion evaluada en x
+        return Math.sin(x);
     }
 }
