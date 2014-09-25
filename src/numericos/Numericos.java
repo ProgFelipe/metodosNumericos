@@ -42,7 +42,8 @@ public class Numericos {
     public static void main(String[] args) {
       // Crear un nuevo Frame
       final JFrame frame = new JFrame("Métodos Numéricos - Andres & Felipe 0.1");
-      String [] data = {"Busqueda incremental","Punto fijo","Biseccion","Newton Raphson","Secante"};
+      String [] data = {"Busqueda incremental _(x0, delta, niter)","Punto fijo","Biseccion _(x0, x1, tolerancia, niter)",
+          "Newton Raphson _(tolerancia, x0, niter)","Secante _(tolerancia, x0, x1,niter)"};
       JLabel jlbdelta = new JLabel("ingrese delta");
       jtxtdelta = new JTextField("",8);
       JLabel jlbtx0 = new JLabel("ingrese xo");
