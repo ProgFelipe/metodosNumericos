@@ -28,7 +28,7 @@ public class bsqIncremental {
         funcion f = new funcion();
         double fx0 = f.calc(x0);
         if(fx0 == 0){
-            JOptionPane.showMessageDialog(frame, Double.toString(x0));
+            JOptionPane.showMessageDialog(frame, x0+" es Raíz");
             return Double.toString(x0);
         }else{
             double x1 = x0 + delta;
@@ -42,7 +42,7 @@ public class bsqIncremental {
                contador += 1;
             }
             if(fx1 == 0){
-                JOptionPane.showMessageDialog(frame, Double.toString(x0));
+                JOptionPane.showMessageDialog(frame, x0+" es Raíz");
                 return Double.toString(x0);
             }else{
                 if(fx0*fx1 < 0){
