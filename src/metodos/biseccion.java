@@ -41,10 +41,10 @@ public class biseccion {
 		double fxs = f.calc(Xi);
 		if(fxi == 0){
 			System.out.println("X inicial es raiz :" + fxi);
-                        JOptionPane.showMessageDialog(frame, "X inicial es raiz :" + fxi);
+                        JOptionPane.showMessageDialog(frame, " inicial es raiz :" + Xi);
 			return Double.toString(fxi);
 			}else if(fxs == 0){
-                                JOptionPane.showMessageDialog(frame, "X siguiente es raiz : " + fxs);
+                                JOptionPane.showMessageDialog(frame," siguiente es raiz : " + Xs);
 				System.out.println("X siguiente es raiz : " + fxs);
 				return Double.toString(fxs);
 				}else if((fxi*fxs) < 0){
@@ -68,13 +68,13 @@ public class biseccion {
 						contador = contador+1;
 						
 						}if(fxm == 0){
-                                                    JOptionPane.showMessageDialog(frame, "Xm es raiz y es : "+ Xm);
+                                                    JOptionPane.showMessageDialog(frame, "la raiz es : "+ Xm);
 							System.out.println("Xm es raiz y es : "+ Xm);
 							return Double.toString(Xm);							
 						}else if(error < tolerancia){
-                                                    JOptionPane.showMessageDialog(frame, "Xm : " + "es aproximacion a una raiz con una toleracia igual"+
+                                                    JOptionPane.showMessageDialog(frame, Xm+" : es aproximacion a una raiz con una toleracia igual"+
                                                             " a : " + tolerancia);
-							System.out.println("Xm : " + "es aproximacion a una raiz con una toleracia igual"
+							System.out.println(Xm +": " + "es aproximacion a una raiz con una toleracia igual"
 									+ " a : " + tolerancia);
 							return Double.toString(tolerancia);
 						}else{
