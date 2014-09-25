@@ -5,6 +5,8 @@
  */
 package metodos;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import numericos.funcion;
 
 /**
@@ -14,15 +16,18 @@ import numericos.funcion;
 public class bsqIncremental {
     public numericos.funcion funcion;
     private double x0, delta;
+    private JFrame frame;
     int niter;
-    public bsqIncremental(double x0, double delta, int niter){
+    public bsqIncremental(JFrame f, double x0, double delta, int niter){
         this.x0 = x0; this.delta = delta; this.niter = niter;
+        this.frame = f;
     }
     
     public String calc(){
         funcion f = new funcion();
         double fx0 = f.calc(x0);
         if(fx0 == 0){
+            JOptionPane.showMessageDialog(frame, Double.toString(x0));
             return Double.toString(x0);
         }else{
             double x1 = x0 + delta;
@@ -36,11 +41,14 @@ public class bsqIncremental {
                contador += 1;
             }
             if(fx1 == 0){
+                JOptionPane.showMessageDialog(frame, Double.toString(x0));
                 return Double.toString(x0);
             }else{
                 if(fx0*fx1 < 0){
+                    JOptionPane.showMessageDialog(frame, "Raiz entre "+x0+" y "+x1);
                     return "Raiz entre "+x0+" y "+x1;
                 }else{
+                    JOptionPane.showMessageDialog(frame, "Fracaso en "+niter+" iteraciones");
                     return "Fracaso en "+niter+" iteraciones";
                 }
             }

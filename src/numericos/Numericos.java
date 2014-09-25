@@ -6,13 +6,18 @@
 package numericos;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -38,12 +43,16 @@ public class Numericos {
       // Crear un nuevo Frame
       final JFrame frame = new JFrame("Métodos Numéricos - Andres & Felipe 0.1");
       String [] data = {"Busqueda incremental","Punto fijo","Biseccion","Newton Raphson","Secante"};
-      jtxtfuncion = new JTextField();
-      jtxtdelta = new JTextField("ingrese delta",8);
-      jtxtx0 = new JTextField("ingrese xo",8);
-      jtxtx1 = new JTextField("ingrese x1",8);
-      jtxtniter = new JTextField("ingrese numero iteraciones",8);
-      jtxttol = new JTextField("ingrese tolerancia",8);
+      JLabel jlbdelta = new JLabel("ingrese delta");
+      jtxtdelta = new JTextField("",8);
+      JLabel jlbtx0 = new JLabel("ingrese xo");
+      jtxtx0 = new JTextField("",8);
+      JLabel jlbtx1 = new JLabel("ingrese x1");
+      jtxtx1 = new JTextField("",8);
+      JLabel jlbiter = new JLabel("ingrese numero iteraciones");
+      jtxtniter = new JTextField("",8);
+      JLabel jlbtol = new JLabel("ingrese tolerancia");
+      jtxttol = new JTextField("",8);
       btncalcular = new JButton("Evaluar");
       list = new JList(data); //data has type Object[]
       list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -52,36 +61,50 @@ public class Numericos {
       
       JScrollPane listScroller = new JScrollPane(list);
       
+      JPanel ingresar = new JPanel();
+      ingresar.setLayout(new GridLayout(5, 2));
+      ingresar.setBorder(BorderFactory.createLineBorder(Color.black));
+      ingresar.add(jlbdelta);
+      ingresar.add(jtxtdelta);
+      ingresar.add(jlbtx0);
+      ingresar.add(jtxtx0);
+      ingresar.add(jlbtx1);
+      ingresar.add(jtxtx1);
+      ingresar.add(jlbiter);
+      ingresar.add(jtxtniter);
+      ingresar.add(jlbtol);
+      ingresar.add(jtxttol);
       listScroller.setPreferredSize(new Dimension(250, 80));
       
       btncalcular.addActionListener(new ActionListener(){
-          public void actionPerformed(ActionEvent e) {
-              funcion f = new funcion(jtxtfuncion.getText());
+          public void actionPerformed(ActionEvent e) {              
               double tolerancia = Double.parseDouble(jtxttol.getText());
               double x0 = Double.parseDouble(jtxtx0.getText());
               double x1 = Double.parseDouble(jtxtx1.getText());
               double delta = Double.parseDouble(jtxtdelta.getText());
               int niter = Integer.parseInt(jtxtniter.getText());
               try{
-                    if(f.validador()){
                           switch(list.getSelectedIndex()){
-                              default:
-                                  new bsqIncremental(x0, delta, niter);
+                              case 0:
+                                  bsqIncremental bsqI = new bsqIncremental(frame, x0, delta, niter);
+                                  bsqI.calc();
                                   break;
                               case 1:
-                                  new puntoFijo();
+                                  puntoFijo pf = new puntoFijo();
                                   break;
                               case 2:
-                                  new biseccion();
+                                  biseccion bsc =  new biseccion(x0,x1,tolerancia, niter);
+                                  bsc.Cal();
                                   break;                      
                               case 3:
-                                  new NewtonRaphson(tolerancia, x0, niter);
+                                  NewtonRaphson NR = new NewtonRaphson(tolerancia, x0, niter);
+                                  NR.calc();
                                   break;                      
                               case 4:
-                                  new secante(tolerancia, x0,x1,niter);
+                                  secante sc = new secante(tolerancia, x0,x1,niter);
+                                  sc.calc();
                                   break;
                           }
-                    }
               }catch(Exception excepcion){
                   System.out.println("Error "+excepcion);
               }
@@ -91,17 +114,13 @@ public class Numericos {
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();  
       // Agregar un JPanel que se llama Mesh (esta clase)
-      frame.setLayout( new FlowLayout( ) );
+      frame.setLayout( new BorderLayout( ) );
       //frame.add(jtxtfuncion);
-      frame.add(jtxtx0);
-      frame.add(jtxtx1);
-      frame.add(jtxtdelta);
-      frame.add(jtxtniter);
-      frame.add(jtxttol);
-      frame.add(listScroller);
-      frame.add(btncalcular);
+      frame.add(ingresar,BorderLayout.WEST);
+      frame.add(listScroller,BorderLayout.EAST);
+      frame.add(btncalcular, BorderLayout.SOUTH);
       // Asignarle tamaÃ±o
-      frame.setSize(screenSize.width/2, 160);
+      frame.setSize(585, 160);
       // Poner el frame en el centro de la pantalla
       frame.setLocationRelativeTo(null);
       // Mostrar el frame
