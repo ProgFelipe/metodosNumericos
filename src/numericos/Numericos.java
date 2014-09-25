@@ -8,7 +8,6 @@ package numericos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,6 +76,7 @@ public class Numericos {
       listScroller.setPreferredSize(new Dimension(250, 80));
       
       btncalcular.addActionListener(new ActionListener(){
+          @Override
           public void actionPerformed(ActionEvent e) {              
               double tolerancia = Double.parseDouble(jtxttol.getText());
               double x0 = Double.parseDouble(jtxtx0.getText());
@@ -93,15 +93,15 @@ public class Numericos {
                                   puntoFijo pf = new puntoFijo();
                                   break;
                               case 2:
-                                  biseccion bsc =  new biseccion(x0,x1,tolerancia, niter);
+                                  biseccion bsc =  new biseccion(frame,x0,x1,tolerancia, niter);
                                   bsc.Cal();
                                   break;                      
                               case 3:
-                                  NewtonRaphson NR = new NewtonRaphson(tolerancia, x0, niter);
+                                  NewtonRaphson NR = new NewtonRaphson(frame,tolerancia, x0, niter);
                                   NR.calc();
                                   break;                      
                               case 4:
-                                  secante sc = new secante(tolerancia, x0,x1,niter);
+                                  secante sc = new secante(frame,tolerancia, x0,x1,niter);
                                   sc.calc();
                                   break;
                           }

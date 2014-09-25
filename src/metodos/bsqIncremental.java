@@ -15,8 +15,9 @@ import numericos.funcion;
  */
 public class bsqIncremental {
     public numericos.funcion funcion;
-    private double x0, delta;
-    private JFrame frame;
+    private double x0;
+    private final double delta;
+    private final JFrame frame;
     int niter;
     public bsqIncremental(JFrame f, double x0, double delta, int niter){
         this.x0 = x0; this.delta = delta; this.niter = niter;

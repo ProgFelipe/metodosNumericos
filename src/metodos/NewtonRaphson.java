@@ -15,8 +15,9 @@ import numericos.funcion;
  */
 public class NewtonRaphson {
      public numericos.funcion funcion;
-     private JFrame frame;
-    private double x0, tolerancia;
+     private final JFrame frame;
+    private final double tolerancia;
+    private double x0;
     int niter;
     public NewtonRaphson(JFrame f, double tol, double x0, int niter){
         this.x0 = x0; this.tolerancia = tol; this.niter = niter;

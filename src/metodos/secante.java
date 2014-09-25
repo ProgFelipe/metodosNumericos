@@ -5,6 +5,8 @@
  */
 package metodos;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import numericos.funcion;
 
 /**
@@ -13,11 +15,14 @@ import numericos.funcion;
  */
 public class secante {
     public numericos.funcion funcion;
-    private double tolerancia, x0, x1;
+    private final double tolerancia;
+    private double x0, x1;
     int niter;
+    private final JFrame frame;
     
-    public secante(double tol, double x0, double x1, int niter){
+    public secante(JFrame f, double tol, double x0, double x1, int niter){
         this.tolerancia = tol; this.x0 = x0; this.x1 = x1; this.niter = niter;
+        this.frame = f;
     }
     public String calc(){
         funcion f = new funcion();
@@ -43,11 +48,14 @@ public class secante {
                 return Double.toString(x1);
             }else
                 if(error < tolerancia){
+                    JOptionPane.showMessageDialog(frame, "es una aproximacion a una raiz con tolerancia = "+tolerancia);
                     return x1+"es una aproximacion a una raiz con tolerancia = "+tolerancia;
                 }else
                     if(den == 0){
+                        JOptionPane.showMessageDialog(frame, "hay una posible raiz multiple");
                         return "hay una posible raiz multiple";
                     }else
+                        JOptionPane.showMessageDialog(frame, "fracaso en "+niter+" iteraciones");
                         return "fracaso en "+niter+" iteraciones";
         }
     }
