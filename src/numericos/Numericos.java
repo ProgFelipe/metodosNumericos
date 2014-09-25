@@ -43,7 +43,7 @@ public class Numericos {
       // Crear un nuevo Frame
       final JFrame frame = new JFrame("Métodos Numéricos - Andres & Felipe 0.1");
       String [] data = {"Busqueda incremental _(x0, delta, niter)","Punto fijo","Biseccion _(x0, x1, tolerancia, niter)",
-          "Newton Raphson _(tolerancia, x0, niter)","Secante _(tolerancia, x0, x1,niter)"};
+          "Newton Raphson _(tolerancia, x0, niter)","Secante _(tolerancia, x0, x1,niter)","Regula Falsi _(x0, x1, tolerancia, niter)"};
       JLabel jlbdelta = new JLabel("ingrese delta");
       jtxtdelta = new JTextField("",8);
       JLabel jlbtx0 = new JLabel("ingrese xo");
@@ -91,7 +91,7 @@ public class Numericos {
                                   bsqIncremental bsqI = new bsqIncremental(frame, x0, delta, niter);
                                   bsqI.calc();
                                   }catch(Exception exeption){
-                                  JOptionPane.showMessageDialog(frame, "No ingreso o erro al ingresar x0 o delta o iteraciones");
+                                  JOptionPane.showMessageDialog(frame, "Busqueda Incremental => No ingreso o erro al ingresar x0 o delta o iteraciones");
                                   }
                                   break;
                               case 1:
@@ -105,7 +105,7 @@ public class Numericos {
                                   int niter = Integer.parseInt(jtxtniter.getText());
                                   biseccion bsc =  new biseccion(frame,x0,x1,tolerancia, niter);
                                   bsc.Cal();}catch(Exception exception){
-                                  JOptionPane.showMessageDialog(frame, "No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");
+                                  JOptionPane.showMessageDialog(frame, "Biseccion => No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");
                                   }
                                   break;                      
                               case 3:
@@ -115,7 +115,7 @@ public class Numericos {
                                   int niter = Integer.parseInt(jtxtniter.getText());
                                   NewtonRaphson NR = new NewtonRaphson(frame,tolerancia, x0, niter);
                                   NR.calc();}catch(Exception exception){
-                                  JOptionPane.showMessageDialog(frame, "No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");}
+                                  JOptionPane.showMessageDialog(frame, "NewtonRaphson => No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");}
                                   break;                      
                               case 4:
                                   try{
@@ -125,9 +125,23 @@ public class Numericos {
                                   int niter = Integer.parseInt(jtxtniter.getText());
                                   secante sc = new secante(frame,tolerancia, x0,x1,niter);
                                   sc.calc();}catch(Exception exceptions){
-                                  JOptionPane.showMessageDialog(frame, "No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");
+                                  JOptionPane.showMessageDialog(frame, "Secante => No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");
                                   }
                                   
+                                  break;
+                              case 5:
+                                 try{
+                                  double tolerancia = Double.parseDouble(jtxttol.getText());
+                                  double x0 = Double.parseDouble(jtxtx0.getText());
+                                  double x1 = Double.parseDouble(jtxtx1.getText());
+                                  int niter = Integer.parseInt(jtxtniter.getText());
+                                  RegulaFalsi rf = new RegulaFalsi(frame,tolerancia, x0,x1,niter);
+                                  rf.Cal();}catch(Exception exceptions){
+                                  JOptionPane.showMessageDialog(frame, "ReglaFalsa => No ingreso o erro al ingresar x0 o x1 o iteraciones o tolerancia");
+                                  }   
+                                  break;
+                              default:
+                                  JOptionPane.showMessageDialog(frame, "Seleccione un metodo antes de continuar" );
                                   break;
                           }
               }catch(Exception excepcion){
