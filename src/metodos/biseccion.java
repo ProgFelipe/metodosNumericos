@@ -37,14 +37,14 @@ public class biseccion {
 	public String Cal(){
 		
 		funcion f = new funcion();
-		double fxi = f.calc(Xs);
-		double fxs = f.calc(Xi);
+		double fxi = f.calc(Xi);
+		double fxs = f.calc(Xs);
 		if(fxi == 0){
-			System.out.println("X inicial es raiz :" + fxi);
+			System.out.println("X inicial es raiz :" + Xi);
                         JOptionPane.showMessageDialog(frame, " inicial es raiz :" + Xi);
 			return Double.toString(fxi);
 			}else if(fxs == 0){
-                                JOptionPane.showMessageDialog(frame," siguiente es raiz : " + Xs);
+                                JOptionPane.showMessageDialog(frame," Es raiz : " + Xs);
 				System.out.println("X siguiente es raiz : " + fxs);
 				return Double.toString(fxs);
 				}else if((fxi*fxs) < 0){
@@ -67,7 +67,8 @@ public class biseccion {
 						error = Math.abs(Xm- Xaux);
 						contador = contador+1;
 						
-						}if(fxm == 0){
+						}
+                                                if(fxm == 0){
                                                     JOptionPane.showMessageDialog(frame, "la raiz es : "+ Xm);
 							System.out.println("Xm es raiz y es : "+ Xm);
 							return Double.toString(Xm);							
