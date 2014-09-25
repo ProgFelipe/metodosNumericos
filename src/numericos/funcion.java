@@ -17,6 +17,7 @@ public class funcion {
 
     public double calc(double x){
         //funcion evaluada en x
+        //System.err.println(Math.sin(x));
         return Math.sin(x);
     }
     
