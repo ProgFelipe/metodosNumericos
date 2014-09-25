@@ -11,17 +11,10 @@ package numericos;
  */
 public class funcion {
     
-    public funcion(String f){
-    
-    }
     public funcion(){
-    
-    }
-    
-    public boolean validador(){
-        return false;
-    }
-    
+
+    }    
+
     public double calc(double x){
         //funcion evaluada en x
         return Math.sin(x);
