@@ -15,6 +15,7 @@ public class funcion {
 
     }    
 
+    //Function f(X)
     public double calc(double x){
         //funcion evaluada en x
         //System.err.println(x+" "+Math.sin(x));
@@ -22,8 +23,14 @@ public class funcion {
         //e^(3x-12)+xcos(3x)-x^2+4 = 0
         return Math.exp(3*x-12)+x*Math.cos(3*x)-Math.pow(x, 2)+4;
     }
-    
+    //Derivada f'(X)
     public double derivada(double x){
         return Math.cos(x);
     }
+    
+    //Function g(X)
+    public double calcG(double x){
+        return Math.exp(3*x-12)+x*Math.cos(3*x)-Math.pow(x, 2)+4;
+    }
+    
 }

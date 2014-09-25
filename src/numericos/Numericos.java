@@ -42,7 +42,7 @@ public class Numericos {
     public static void main(String[] args) {
       // Crear un nuevo Frame
       final JFrame frame = new JFrame("Métodos Numéricos - Andres & Felipe 0.1");
-      String [] data = {"Busqueda incremental _(x0, delta, niter)","Punto fijo","Biseccion _(x0, x1, tolerancia, niter)",
+      String [] data = {"Busqueda incremental _(x0, delta, niter)","Punto fijo _(x0, tolerancia, niter)","Biseccion _(x0, x1, tolerancia, niter)",
           "Newton Raphson _(tolerancia, x0, niter)","Secante _(tolerancia, x0, x1,niter)","Regula Falsi _(x0, x1, tolerancia, niter)"};
       JLabel jlbdelta = new JLabel("ingrese delta");
       jtxtdelta = new JTextField("",8);
@@ -95,7 +95,15 @@ public class Numericos {
                                   }
                                   break;
                               case 1:
-                                  puntoFijo pf = new puntoFijo();
+                                  try{
+                                  double x0 = Double.parseDouble(jtxtx0.getText());
+                                  int niter = Integer.parseInt(jtxtniter.getText());
+                                  double tolerancia = Double.parseDouble(jtxttol.getText());
+                                  puntoFijo pf = new puntoFijo(frame, x0, tolerancia, niter);
+                                  pf.Calc();
+                                  }catch(Exception exceptions){
+                                  JOptionPane.showMessageDialog(frame, "PuntoFijo => No ingreso o erro al ingresar x0 o iteraciones o tolerancia; Recuerde poner g(x)");
+                                  }
                                   break;
                               case 2:
                                   try{
