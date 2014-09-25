@@ -42,8 +42,8 @@ public class bsqIncremental {
                contador += 1;
             }
             if(fx1 == 0){
-                JOptionPane.showMessageDialog(frame, x0+" es Raíz");
-                return Double.toString(x0);
+                JOptionPane.showMessageDialog(frame, x1+" es Raíz");
+                return Double.toString(x1);
             }else{
                 if(fx0*fx1 < 0){
                     JOptionPane.showMessageDialog(frame, "Raiz entre "+x0+" y "+x1);
